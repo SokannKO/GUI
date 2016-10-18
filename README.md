@@ -1,3 +1,7 @@
-# SKo
+# SKo GitHub README
 
-test
+
+GUI GitHub page
+
+Seokhwan KO
+
