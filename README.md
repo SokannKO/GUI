@@ -1,7 +1,7 @@
 # SKo GitHub README
 
 
-GUI GitHub master page
+GUI GitHub gh-pages page
 
 Seokhwan KO
 
