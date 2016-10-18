@@ -1,0 +1,87 @@
+body {
+    background-image: url("ptrbackground.jpg");
+    background-repeat: repeat-x;
+    color: #666666;
+    font-family: Arial, Helvetica, sans-serif;
+}
+header {
+    background-image: url("sunset.jpg");
+    background-repeat: no-repeat;
+    background-color: #000000;
+    background-position: right;
+    clear: left;
+    color : white;
+    text-align: left;
+}
+img {
+	float: left;
+	margin-right : 30px;
+}
+.resort {
+	color: #6699CC;
+	font-weight: bold;
+}
+#wrapper{
+	margin: auto;
+	width: 80%;
+	background-color: #33CCFF;
+	min-width: 600px;
+	max-width: 1300px;
+}
+#content{
+    padding: 1px 20px 20px 20px;
+    background-color: #FFFFFF;
+    margin-left: 190px;
+    padding-left: 30px;
+	position : relative;
+}
+#content ul{
+	list-style-position: inside;
+    list-style-image: url("marker.gif");
+}
+nav {
+    float: left;
+	font-weight: bold;
+	width: 160px;
+    margin: 0;
+    padding: 10px;
+}
+nav ul {
+	padding-left: 10px;
+    font-size: 1.2em;
+    list-style-type: none;
+}
+nav a {
+    text-decoration: none;
+}
+nav a:visited {
+    color: #344873;
+}
+nav a:hover {
+    color: #FFFFFF;
+}
+h1 {
+    margin-bottom: 0;
+    padding: 10px;
+}
+h2 {
+    color: #3399CC;
+}
+h1,
+h2 {
+    font-family: Georgia, "Times New Roman", serif;
+}
+#contact {
+    font-size: 90%;
+}
+dt {
+    color: #000033;
+}
+footer{
+	background-color: #FFFFFF;
+	padding: 20px;
+	margin-left: 190px;
+	font-size: 9pt;
+	font-style: italic;
+	font-family: georgia, "Times New Roman", serif;  
+}
