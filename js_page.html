@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+ Full name :	Seokhwan Ko
+ Email :		seokhwan_ko@student.uml.edu
+ File :			/~sko/public_html/GUI/index.html
+  
+ Affiliation :	Department of Computer Science, University of Massachusetts Lowell
+ Description :	Assignment #4; Styling Your First Web Page With CSS.
+ 				I was to enhance my page with additional HTML techniques and
+				apply CSS to HTML to give some basic styling.
+ 
+ updated by Seokhwan Ko on October 03, 2016 at 10:00 PM
+ 
+ Copyright (c) 2016 by Seokhwan Ko. All rights reserved.
+
+-->
+<html lang="en">
+	<head>
+    	<meta charset="utf-8">
+		<title>K.O. webpage for GUI</title>
+		<link href="css/style.css" rel="stylesheet">
+	</head>
+	<body>
+
+		<div class="container">
+
+			<header>
+				<a href="https://sokannko.github.io/GUI/"><img src="images/logo.jpg" alt="sko" width="290" height="90" /></a>
+			</header>
+  
+			<nav>
+				<ul>
+					<li><a href="https://sokannko.github.io/GUI/">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="assignment.html">Assignment</a></li>
+					<li><a href="js_page.html">Javascript</a></li>
+				</ul>
+			</nav>
+
+			<article>
+				
+				<p id="demo"></p>
+
+				<script>
+					document.getElementById("demo").innerHTML = "The temperature is " + toCelsius(77) + " Celsius";
+
+					function toCelsius(fahrenheit) {return (5/9) * (fahrenheit-32);}
+				</script>
+
+			</article>
+
+			<footer>Copyright (c) 2016 by Seokhwan Ko. All rights reserved.</footer>
+
+		</div>
+	</body>
+</html>
