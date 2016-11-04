@@ -78,7 +78,7 @@ function myFunction() {
 	if(c1>c2) {temp = c1;c1 = c2;c2 = temp;}
 
 	
-	var row_size = r2 - r1 + 1;	// set size of row
+	var row_size = r2 - r1 + 2;	// set size of row
 	var col_size = c2 - c1 + 2;	// set size of col
 	
 	var matrix = new Array(row_size);	// array for matrix
@@ -101,7 +101,7 @@ function myFunction() {
 				matrix[i][j] = j+parseInt(c1)-1;
 			}
 			else if(j == 0){
-				matrix[i][j] = i+parseInt(r1);
+				matrix[i][j] = i+parseInt(r1)-1;
 			}
 			
 			else{
