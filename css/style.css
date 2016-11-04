@@ -13,6 +13,7 @@ div.container {
 	border-radius: 10px;
 }
 header {
+	margin 0 auto;
 	font-family: "Courier New", Courier, monospace;
 	font-size: 20px;
 	color: black;
@@ -50,10 +51,11 @@ h2 {
 	font-size: 18px;
 }
 article {
-	margin: auto;
+	margin: 0 auto;
 	padding: 15px;
 	width: 400px;
-	margin-bottom: 50px;
+	height: 800px;
+	margin-bottom: 70px;
 }
 article a {
 	color: #333333;
@@ -70,4 +72,22 @@ footer {
     text-align: center;
 	border-top: 3px solid gray;
 	background-color: #404040;
+}
+#setTable table {
+	border: 1px solid #404040;
+    border-collapse: collapse;
+}
+#setTable td {
+
+	border: 2px solid #404040;
+    border-collapse: collapse;
+	
+    height: 30px;
+	width : 30px;
+    vertical-align: bottom;
+	text-align: center;
+	font-size: 18px;
+}
+#matrix_io td {
+	height: 30px;
 }
