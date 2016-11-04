@@ -5,16 +5,17 @@
  File :			/~sko/public_html/GUI/index.html
   
  Affiliation :	Department of Computer Science, University of Massachusetts Lowell
- Description :	Assignment #4; Styling Your First Web Page With CSS.
- 				I was to enhance my page with additional HTML techniques and
-				apply CSS to HTML to give some basic styling.
+ Description :	Assignment #6; Styling Your First Web Page With CSS.
+ 				This is the assignment using JavaScript that write myself.
+                I created matrix which receives input data from user.
  
- updated by Seokhwan Ko on October 03, 2016 at 10:00 PM
+ updated by Seokhwan Ko on November 03, 2016 at 08:13 PM
  
  Copyright (c) 2016 by Seokhwan Ko. All rights reserved.
 
 -->
 <html lang="en">
+	<!-- head info -->
 	<head>
     	<meta charset="utf-8">
 		<title>K.O. webpage for GUI</title>
@@ -23,11 +24,12 @@
 	<body>
 
 		<div class="container">
-
+			<!-- logo info -->
 			<header>
 				<a href="https://sokannko.github.io/GUI/"><img src="images/logo.jpg" alt="sko" width="290" height="90" /></a>
 			</header>
-  
+            
+			<!-- navigation menu-->
 			<nav>
 				<ul>
 					<li><a href="https://sokannko.github.io/GUI/">Home</a></li>
@@ -36,19 +38,57 @@
 					<li><a href="js_page.html">Javascript</a></li>
 				</ul>
 			</nav>
-
+			
+            <!-- main contents part -->
 			<article>
 				<h2>Javascript</h2>
-				<p id="demo"></p>
+                
+                <!-- table for input values -->
+				<table id="matrix_io" style="width:100%;">
+					<tr>
+                   	  <td style="width:45%;">Enter horizontal axis</td>
+					  <td style="width:10%;"></td>
+					  <td style="width:45%;"></td>
+					</tr>
+                	<tr>
+                   	  <td style="width:45%;"><input type="text" id="col_start"></td>
+					  <td style="width:10%;"></td>
+					  <td style="width:45%;"><p id="message1"></p></td>
+					</tr>
+                    <tr>
+                   	  <td style="width:45%;"><input type="text" id="col_end"></td>
+					  <td style="width:10%;"></td>
+					  <td style="width:45%;"><p id="message2"></p></td>
+					</tr>
+                    <tr>
+                   	  <td style="width:45%;">Enter vertical axis</td>
+					  <td style="width:10%;"></td>
+					  <td style="width:45%;"></td>
+					</tr>
+                    <tr>
+                   	  <td style="width:45%;"><input type="text" id="row_start"></td>
+					  <td style="width:10%;"></td>
+					  <td style="width:45%;"><p id="message3"></p></td>
+					</tr>
+                    <tr>
+                   	  <td style="width:45%;"><input type="text" id="row_end"></td>
+					  <td style="width:10%;"></td>
+					  <td style="width:45%;"><p id="message4"></p></td>
+					</tr>
 
-				<script>
-					document.getElementById("demo").innerHTML = "The temperature is " + toCelsius(77) + " Celsius";
-
-					function toCelsius(fahrenheit) {return (5/9) * (fahrenheit-32);} 
-				</script>
-
+				</table>
+				<!-- submit button -->
+				<button type="button" onclick="myFunction()">Process</button>
+				
+                <!-- result table -->
+				<p id="setTable"></p>
+				<br><br>
+                
+                <!-- call jsp -->
+				<script src="js/matrix.js"></script>
 			</article>
 
+			<!-- print footer -->
 			<footer>Copyright (c) 2016 by Seokhwan Ko. All rights reserved.</footer>
 
 		</div>
