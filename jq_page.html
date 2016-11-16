@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--
+ Full name :	Seokhwan Ko
+ Email :		seokhwan_ko@student.uml.edu
+ File :			/~sko/public_html/GUI/index.html
+  
+ Affiliation :	Department of Computer Science, University of Massachusetts Lowell
+ Description :	Assignment #7; Using the jQuery Validation Plugin with Your Dynamic Table.
+ 				For this assignment you are required to do the validation using the jQuery
+				Validation plugin.
+ 
+ updated by Seokhwan Ko on November 15, 2016 at 11:03 PM
+ 
+ Copyright (c) 2016 by Seokhwan Ko. All rights reserved.
+
+-->
+<html lang="en">
+	<!-- head info -->
+	<head>
+    	<meta charset="utf-8">
+		<title>K.O. webpage for GUI</title>
+		<link href="css/style.css" rel="stylesheet">
+
+	</head>
+	<body>
+
+		<div class="container">
+			<!-- logo info -->
+			<header>
+				<a href="https://sokannko.github.io/GUI/"><img src="images/logo.jpg" alt="sko" width="290" height="90" /></a>
+			</header>
+            
+			<!-- navigation menu-->
+			<nav>
+				<ul>
+					<li><a href="https://sokannko.github.io/GUI/">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="assignment.html">Assignment</a></li>
+					<li><a href="js_page.html">Javascript</a></li>
+                    <li><a href="jq_page.html">JQuery</a></li>
+				</ul>
+			</nav>
+			
+            <!-- main contents part -->
+			<article>
+				<h2>JQuery</h2>
+                
+                <!-- table for input values -->
+                <form class="mform" id="matrix_form" method="get" action="">
+					<fieldset>
+					<legend>Enter horizontal axis</legend>
+					<p>
+						<label for="col_start">col_start</label>
+						<input id="col_start" name="col_start" type="text">
+					</p>
+					<p>
+						<label for="col_end">col_end</label>
+						<input id="col_end" name="col_end" type="text">
+					</p>
+                    </fieldset>
+                    <fieldset>
+                    <legend>Enter vertical axis</legend>
+					<p>
+						<label for="row_start">row_start</label>
+						<input id="row_start" name="row_start" type="text">
+					</p>
+					<p>
+						<label for="row_end">row_end</label>
+						<input id="row_end" name="row_end" type="text">
+					</p>
+                    </fieldset>
+            
+            <!-- submit button
+            <button type="button" onclick="myFunction()">Process</button>
+             -->
+					<input class="submit" type="submit" value="Process">
+
+				</form>
+    
+                <!-- result table -->
+				<p id="setTable"></p>
+				<br><br>
+                
+				<!-- call jsp -->
+				<script src="js/jquery-1.11.1.js"></script>
+				<script src="js/jquery.validate.js"></script>
+				<script type="text/javascript" src="js/matrix.js"></script>
+                
+			</article>
+
+			<!-- print footer -->
+			<footer>Copyright (c) 2016 by Seokhwan Ko. All rights reserved.</footer>
+
+		</div>
+	</body>
+</html>

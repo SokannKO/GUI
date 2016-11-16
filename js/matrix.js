@@ -1,3 +1,53 @@
+$().ready(function() {
+		// validate signup form on keyup and submit
+		
+		$("#matrix_form").validate({
+			rules: {
+				col_start: {
+					required: true,
+					number: true
+				},
+				col_end: {
+					required: true,
+					number: true
+				},
+				row_start: {
+					required: true,
+					number: true
+				},
+				row_end: {
+					required: true,
+					number: true
+				},
+			},
+			messages: {
+				col_start: {
+					required: "Please enter a col_start",
+					number: "Please input NUMBER"
+				},
+				col_end: {
+					required: "Please enter a col_end",
+					number: "Please input NUMBER"
+				},
+				row_start: {
+					required: "Please enter a row_start",
+					number: "Please input NUMBER"
+				},
+				row_end: {
+					required: "Please enter a row_end",
+					number: "Please input NUMBER"
+				}
+			},
+		// When the Process button is clicked
+		submitHandler: function() {
+			myFunction();	// call the myFunction()
+			return false;
+			}
+		});
+
+});
+
+
 function myFunction() {
 	
 	<!-- Remove previous table -->
@@ -15,61 +65,6 @@ function myFunction() {
 	var c2 = document.getElementById("col_end").value;
 	var r1 = document.getElementById("row_start").value;
 	var r2 = document.getElementById("row_end").value;
-	
-	
-	<!-- check input values -->
-	var message1;
-	message1 = document.getElementById("message1");
-	message1.innerHTML = "";
-	
-	try {
-		if(c1 == "")  throw "empty";
-		if(isNaN(c1)) throw "not a number";
-		c1 = Number(c1);
-	}
-	catch(err) {
-		message1.innerHTML = "Input is " + err;
-	}
-	
-	var message2;
-	message2 = document.getElementById("message2");
-	message2.innerHTML = "";
-	
-	try {
-		if(c2 == "")  throw "empty";
-		if(isNaN(c2)) throw "not a number";
-		c2 = Number(c2);
-	}
-	catch(err) {
-		message2.innerHTML = "Input is " + err;
-	}
-	
-	var message3;
-	message3 = document.getElementById("message3");
-	message3.innerHTML = "";
-	
-	try {
-		if(r1 == "")  throw "empty";
-		if(isNaN(r1)) throw "not a number";
-		r1 = Number(r1);
-	}
-	catch(err) {
-		message3.innerHTML = "Input is " + err;
-	}
-	
-	var message4;
-	message4 = document.getElementById("message4");
-	message4.innerHTML = "";
-	
-	try {
-		if(r2 == "")  throw "empty";
-		if(isNaN(r2)) throw "not a number";
-		r2 = Number(r2);
-	}
-	catch(err) {
-		message4.innerHTML = "Input is " + err;
-	}
-	
 	
 	
 	<!-- exchange values -->
@@ -137,4 +132,3 @@ function myFunction() {
 	}
 }
 	
-

@@ -91,3 +91,37 @@ footer {
 #matrix_io td {
 	height: 30px;
 }
+
+#matrix_form {
+	width: 500px;
+	font-size: 1.0em;
+	color: #333;
+}
+#matrix_form fieldset {
+	margin-bottom: 10px;
+}
+
+#matrix_form label {
+	display: inline-block;
+	line-height: 1.8;
+	vertical-align: top;
+	cursor: hand;
+}
+#matrix_form fieldset p {
+	list-style: none;
+	padding: 5px;
+	margin: 0;
+}
+#matrix_form label {
+	width: 100px;
+
+}
+#matrix_form label.error {
+	width: 180px;
+
+}
+label.error {
+	color: red;
+	font-style: italic;
+	font-weight: bold
+}
