@@ -1,18 +1,25 @@
 /*
  Full name :	Seokhwan Ko
  Email :		seokhwan_ko@student.uml.edu
- File :			https://sokannko.github.io/GUI/js/matrix.js
+ File :			https://sokannko.github.io/GUI/js/matrix_sl.js
   
  Affiliation :	Department of Computer Science, University of Massachusetts Lowell
- Description :	Assignment #7; Using the jQuery Validation Plugin with Your Dynamic Table.
- 				For this assignment you are required to do the validation using the jQuery
-				Validation plugin.
+ Description :	Assignment #8; Using the jQuery UI Slider and Tab Widgets.
+ 				This assignment introduces you to the jQuery User Interface (UI) library.
  
- updated by Seokhwan Ko on November 15, 2016 at 11:03 PM
+ updated by Seokhwan Ko on November 22, 2016 at 09:57 PM
  
  Copyright (c) 2016 by Seokhwan Ko. All rights reserved.
 
 */
+
+function auto_submit() {
+  // If the form is valid
+  if( $("form#matrix_form").valid() == true ) {
+    // Then make it submit, which should update the tab in the process.
+    $("form#matrix_form").submit();
+  }
+}
 
 $().ready(function() {
 		// validate signup form on keyup and submit
@@ -54,6 +61,7 @@ $().ready(function() {
 					number: "Please input NUMBER"
 				}
 			},
+
 		// When the Process button is clicked
 		submitHandler: function() {
 			myFunction();	// call the myFunction()
@@ -62,7 +70,6 @@ $().ready(function() {
 		});
 
 });
-
 
 function myFunction() {
 	
@@ -146,5 +153,80 @@ function myFunction() {
 	{
 		y[0].cells[j].style.backgroundColor = "black";
 	}
+}
+
+$( function () {
+	$( "#slider-range1" ).slider({
+		range: true,
+		min: 0,	// set min value
+		max: 100,	// set max value
+		values: [ 10, 15 ],	// set initial value
+		slide: function( event, ui ) {
+			$( "#col_start" ).val(ui.values[ 0 ]);
+			$( "#col_end" ).val(ui.values[ 1 ]);
+			auto_submit();
+		}
+	});
+	$( "#col_start" ).val( $( "#slider-range1" ).slider( "values", 0 ));
+	$( "#col_end" ).val( $( "#slider-range1" ).slider( "values", 1 ));
+});
+$( function () {	
+	$( "#slider-range2" ).slider({
+		range: true,
+		min: 0,	// set min value
+		max: 100,	// set max value
+		values: [ 10, 15 ],	// set initial value
+		slide: function( event, ui ) {
+			$( "#row_start" ).val(ui.values[ 0 ]);
+			$( "#row_end" ).val(ui.values[ 1 ]);
+			auto_submit();
+		}
+	});
+	$( "#row_start" ).val( $( "#slider-range2" ).slider( "values", 0 ));
+	$( "#row_end" ).val( $( "#slider-range2" ).slider( "values", 1 ));
+});
+
+var tabIdx = 0;	// initialize tab index
+
+// This part, I referred to jquery org webpage; https://jqueryui.com/tabs/
+function add_tab() {
+	var tabCount = $("#tabs li").length + 1;
+	console.log("Current tab count is: " + tabCount);
+	
+	// set limitation of the tab count
+	if(tabCount > 6) {
+		alert("Cannot create tabs more than 6");
+		return false;
+	}
+	
+	$( "#tabs" ).tabs();	// initialize tabs.
+
+	// Get the dimensions of the current table
+	var t_col_start = (document.getElementById('col_start').value);
+	var t_col_end = (document.getElementById('col_end').value);
+	var t_row_start = (document.getElementById('row_start').value);
+	var t_row_end = (document.getElementById('row_end').value);
+
+	tabIdx++;
+
+	// Create the title bar, this will be a string to send to .append()
+	var tabTitle = "<li class='tab'><a href='#tab-" + tabIdx + "'>" + t_col_start +
+              " , " + t_col_end + " <> " + t_row_start + " , " + t_row_end + "</a>" +
+              "<span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span>" + "</li>";
+
+	// Add new tabTitle.
+	$( "div#tabs ul" ).append( tabTitle );
+	// Add the current matrix table.
+	$( "div#tabs" ).append('<div id="tab-' + tabIdx + '">' + $("#setTable").html() + '</div>');
+	// Refresh the tabs
+	$( "#tabs" ).tabs("refresh");
+	// Make the new tab active
+	$( "#tabs" ).tabs("option", "active", -1);
+	// Add a remove button
+	$( "#tabs" ).delegate( "span.ui-icon-close", "click", function() {
+		var panel_Id = $( this ).closest( "li" ).remove().attr( "aria-controls" );
+		$( "#" + panel_Id ).remove();
+		
+	});
 }
 	

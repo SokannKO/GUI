@@ -2,14 +2,13 @@
 <!--
  Full name :	Seokhwan Ko
  Email :		seokhwan_ko@student.uml.edu
- File :			https://sokannko.github.io/GUI/jq_page.html
+ File :			https://sokannko.github.io/GUI/jqadv_page.html
   
  Affiliation :	Department of Computer Science, University of Massachusetts Lowell
- Description :	Assignment #7; Using the jQuery Validation Plugin with Your Dynamic Table.
- 				For this assignment you are required to do the validation using the jQuery
-				Validation plugin.
+ Description :	Assignment #8; Using the jQuery UI Slider and Tab Widgets.
+ 				This assignment introduces you to the jQuery User Interface (UI) library.
  
- updated by Seokhwan Ko on November 15, 2016 at 11:03 PM
+ updated by Seokhwan Ko on November 22, 2016 at 09:57 PM
  
  Copyright (c) 2016 by Seokhwan Ko. All rights reserved.
 
@@ -20,6 +19,7 @@
     	<meta charset="utf-8">
 		<title>K.O. webpage for GUI</title>
 		<link href="css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/jquery-ui.css">
 	</head>
 	<body>
 
@@ -43,50 +43,55 @@
 			
             <!-- main contents part -->
 			<article>
-				<h2>JQuery</h2>
+				<h2>JQuery Adv</h2>
                 
                 <!-- table for input values -->
                 <form class="mform" id="matrix_form" method="get" action="">
 					<fieldset>
 					<legend>Enter horizontal axis</legend>
 					<p>
-						<label for="col_start">col_start</label>
-						<input id="col_start" name="col_start" type="text">
+						<label for="col_start">min:</label>
+						<input type="text" id="col_start" readonly style="width:50px; border:0; color:#f6931f; font-weight:bold; margin-right: 100px;">
+						<label for="col_end">max:</label>
+						<input type="text" id="col_end" readonly style="width:50px; border:0; color:#f6931f; font-weight:bold;">
 					</p>
-					<p>
-						<label for="col_end">col_end</label>
-						<input id="col_end" name="col_end" type="text">
-					</p>
+					<div id="slider-range1"></div>
                     </fieldset>
                     <fieldset>
                     <legend>Enter vertical axis</legend>
-					<p>
-						<label for="row_start">row_start</label>
-						<input id="row_start" name="row_start" type="text">
+                    <p>
+						<label for="row_start">min:</label>
+						<input type="text" id="row_start" readonly style="width:50px; border:0; color:#f6931f; font-weight:bold; margin-right: 100px;">
+						<label for="row_end">max:</label>
+						<input type="text" id="row_end" readonly style="width:50px; border:0; color:#f6931f; font-weight:bold;">
 					</p>
-					<p>
-						<label for="row_end">row_end</label>
-						<input id="row_end" name="row_end" type="text">
-					</p>
+					<div id="slider-range2"></div>
                     </fieldset>
             
             <!-- submit button
-            <button type="button" onclick="myFunction()">Process</button>
-             -->
-					<input class="submit" type="submit" value="Process">
+            <button type="button" onclick="myFunction()">Process</button>-->
+					<input class="submit" type="submit" value="Save Matrix" onClick="add_tab();">
 
 				</form>
-    
+				
                 <!-- result table -->
 				<p id="setTable"></p>
 				<br><br>
                 
+
 				<!-- call jsp -->
+                
 				<script src="js/jquery-1.11.1.js"></script>
 				<script src="js/jquery.validate.js"></script>
-				<script type="text/javascript" src="js/matrix.js"></script>
-                
+				<script type="text/javascript" src="js/matrix_sl.js"></script>
+                <script src="js/ui/1.12.1/jquery-ui.js"></script>
+       
 			</article>
+			<!-- tab section -->
+			<div id="tabs">
+				<ul>
+				</ul>
+			</div>
 
 			<!-- print footer -->
 			<footer>Copyright (c) 2016 by Seokhwan Ko. All rights reserved.</footer>
