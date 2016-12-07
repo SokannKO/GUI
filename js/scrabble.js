@@ -1,20 +1,23 @@
 /*
- Tyler J. Bainbridge
- tyler_bainbridge@student.uml.edu
- 91.461 GUI Programming I
- Assignment:  Scrabble using JQuery UI
- December 4th, 2015
+ Full name :	Seokhwan Ko
+ Email :		seokhwan_ko@student.uml.edu
+ File :			https://sokannko.github.io/GUI/jq_scrabble.html
+  
+ Affiliation :	Department of Computer Science, University of Massachusetts Lowell
+ Description :	Assignment #9; Implementing a Bit of Scrabble with Drag-and-Drop.
+ 				This is the assignment9 for creating scrabble board.
+ 
+ updated by Seokhwan Ko on December 06, 2016 at 10:50 PM
+ 
+ Copyright (c) 2016 by Seokhwan Ko. All rights reserved.
 
- Tyler Bainbridge, UMass Lowell Computer Science, tbainbr@cs.uml.edu
- Copyright (c) 2015 by Tyler J Bainbridge
- updated by TJB on December 4th, 2015 at 7:45 PM
  */
 
 var lettersOnDeck = 0;
 var images = "";
 var tcount = 0;
 var THISISTHETOTALSCORE = 0;
-var word = new Array(8); //the board where you put the tiles. this is for tpaneling the word
+var word = new Array(8);
 var scores = [
     {"letter": "A", "value": 1, "amount": 9},
     {"letter": "B", "value": 3, "amount": 2},
@@ -46,18 +49,30 @@ var scores = [
 
 
 $(document).ready(function () {
-    // printTable();
     SetupBoard(); //randomly setup the board
     DragnDrop(); //initializes the draggables and droppables
 
 });
 
-function NewTiles()
+// function for button add tiles
+function AddTiles(){
+    if(document.getElementById('messages').innerHTML === "Your word is correct!!")
+    {
+        THISISTHETOTALSCORE += parseInt(document.getElementById('score').innerHTML);
+        document.getElementById('totalscore').innerHTML = "Total score:" + THISISTHETOTALSCORE;
+        SetupBoard();
+    }else{
+        alert("Please submit a valid word");
+    }
+}
+
+// function for button next
+function Next()
 {
     if(document.getElementById('messages').innerHTML === "Your word is correct!!")
     {
         THISISTHETOTALSCORE += parseInt(document.getElementById('score').innerHTML);
-        document.getElementById('totalscore').innerHTML = "Total score: " + THISISTHETOTALSCORE;
+        document.getElementById('totalscore').innerHTML = "Total score:" + THISISTHETOTALSCORE;
         restart();
     }else{
         alert("Please submit a valid word");
@@ -65,20 +80,17 @@ function NewTiles()
 
 }
 
-function AddTiles(){
-    if(document.getElementById('messages').innerHTML === "Your word is correct!!")
-    {
-        THISISTHETOTALSCORE += parseInt(document.getElementById('score').innerHTML);
-        document.getElementById('totalscore').innerHTML = "Total score: " + THISISTHETOTALSCORE;
-        SetupBoard();
-    }else{
-        alert("Please submit a valid word");
-    }
+// function for button new
+function NewGame()
+{
+    restart();
+	document.getElementById('word').innerHTML = "----";
+	document.getElementById('messages').innerHTML = "New game Start!!";
+	document.getElementById('score').innerHTML = "0";
+    document.getElementById('totalscore').innerHTML = "Total score:0";
 }
 
-/**
- * setup the board with tiles
- */
+//setup the board with tiles
 function SetupBoard() {
     var letter;
     var random;
@@ -99,10 +111,7 @@ function SetupBoard() {
     DragnDrop(); //refresh the draggable code
 }
 
-/**
- * *
- * @param word to convert into score using the array values in scores
- */
+// update the current score
 function updateScore(word) {
     var totalScore = 0;
     var scoreToAdd = 0;
@@ -133,13 +142,11 @@ function updateScore(word) {
         totalScore = totalScore * 2;
     }
     //put it in the score div
-    document.getElementById('score').innerHTML = "Current score: " + totalScore.toString();
+    document.getElementById('score').innerHTML = totalScore.toString();
 }
 
-/**
- * draggable and droppable stuff
- * @constructor
- */
+
+// draggable and droppable stuff
 function DragnDrop() {
     //allow the tiles to be dropped back on the panel
     $("#panel").droppable({accept: '.panel_blocks', out: Letters});
@@ -189,20 +196,7 @@ function DragnDrop() {
     }
 }
 
-function NewGame()
-{
-    restart();
-	document.getElementById('word').innerHTML = "----";
-	document.getElementById('messages').innerHTML = "New game Start!!";
-	document.getElementById('score').innerHTML = "Current score: 0";
-    document.getElementById('totalscore').innerHTML = "Total score: 0";
-}
-
-
-
-/**
- * locks the word down on the board so you cant move them
- */
+// locks the word down on the board so you cant move them
 function lockWord() {
     var object = "";
     //go through the entire word
@@ -217,10 +211,7 @@ function lockWord() {
 
 }
 
-/**
- * get the word from the board
- * @param varDraggableId the table array
- */
+// get the word from the board
 function updateWord(varDraggableId) {
     var currentword = "";
     for (var i = 0; i < varDraggableId.length; i++) {
@@ -238,30 +229,7 @@ function updateWord(varDraggableId) {
 }
 
 /**
- * probably not going to use this
- */
-function printTable() {
-    var string = "";
-    var blank = "class=\"board_main\" src=\"images/scrabble/blank.jpg\">";
-    string = string + "<br>";
-    string = string + "<table>"; //opening the table
-    var tablecell = 0;
-    for (var i = 0; i < 4; i++) {
-        string = string + "<tr>";
-        for (var j = 0; j < 4; j++) {
-            tablecell++;
-            string = string + "<th>";
-            string = string + "<img id=\"" + tablecell + "\"" + blank;
-            string = string + "</th>";
-        }
-        string = string + "</tr>";
-    }
-    string = string + "</table>";
-    console.log(string);
-    document.getElementById('board').innerHTML = string;
-}
-/**
- * refresh the hand and the board and the messages
+ * restart, reset the board
  */
 function restart()
 {
@@ -297,6 +265,7 @@ function restart()
 
 }
 
+
 // The dictionary lookup object
 var dict = {};
 
@@ -313,9 +282,7 @@ $.get( "dic/dictionary.txt", function( txt ) {
     }
 });
 
-/**
- * submmit the word
- */
+// submit the word
 function submitWord(){
 
     findWord();
@@ -333,11 +300,8 @@ function submitWord(){
     }
 
 }
-/**
- * find the word in the dict
- * @param word to search for
- * @returns {*}
- */
+
+//find the word from the dictionary
 function findWord( word ) {
     // See if it's in the dictionary
     if ( dict[ word ] ) {

@@ -1,16 +1,14 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <!--
  Full name :	Seokhwan Ko
  Email :		seokhwan_ko@student.uml.edu
- File :			https://sokannko.github.io/GUI/js_page.html
+ File :			https://sokannko.github.io/GUI/jq_scrabble.html
   
  Affiliation :	Department of Computer Science, University of Massachusetts Lowell
- Description :	Assignment #6; Styling Your First Web Page With CSS.
- 				This is the assignment using JavaScript that write myself.
-                I created matrix which receives input data from user.
+ Description :	Assignment #9; Implementing a Bit of Scrabble with Drag-and-Drop.
+ 				This is the assignment9 for creating scrabble board.
  
- updated by Seokhwan Ko on November 03, 2016 at 08:13 PM
+ updated by Seokhwan Ko on December 06, 2016 at 10:50 PM
  
  Copyright (c) 2016 by Seokhwan Ko. All rights reserved.
 
@@ -22,7 +20,6 @@
 		<title>K.O. webpage for GUI</title>
 		<link href="css/style.css" rel="stylesheet">
         <link href="css/scrabble.css" rel="stylesheet">
-
 	</head>
 	<body>
 
@@ -49,44 +46,45 @@
 			<article>
 				<h2>Scrabble</h2>
                 
+                <!-- Board -->
                 <div id="board">
-    <table>
-        <img id="0" class="board_main" src="images/scrabble/blank.jpg">
-        <img id="1" class="board_main" src="images/scrabble/blank.jpg">
-        <img id="2" class="board_main" src="images/scrabble/doubleletter.jpg">
-        <img id="3" class="board_main" src="images/scrabble/blank.jpg">
-        <img id="4" class="board_main" src="images/scrabble/blank.jpg">
-        <img id="5" class="board_main" src="images/scrabble/doubleword.jpg">
-        <img id="6" class="board_main" src="images/scrabble/blank.jpg">
-        <img id="7" class="board_main" src="images/scrabble/blank.jpg">
-    </table>
-
-<div id="word">----</div>
-</div>
-<div id="panel">
-</div>
-<div id="messages">Start!!</div><br>
-<div id="score">Current score: 0</div>
-<div id="button">
-    <button onclick="AddTiles()" class="btn1">
-        Add tiles
-    </button>
-
-    <button onClick="NewTiles()" class="btn1">
-        Next
-    </button>
-
-    <button onClick="NewGame()" class="btn2">
-        New
-    </button>
-</div>
-<div id="totalscore">Total score: 0</div>
-
+                  <table>
+                      <img id="0" class="board_main" src="images/scrabble/blank.jpg">
+                      <img id="1" class="board_main" src="images/scrabble/blank.jpg">
+                      <img id="2" class="board_main" src="images/scrabble/doubleletter.jpg">
+                      <img id="3" class="board_main" src="images/scrabble/blank.jpg">
+                      <img id="4" class="board_main" src="images/scrabble/blank.jpg">
+                      <img id="5" class="board_main" src="images/scrabble/doubleword.jpg">
+                      <img id="6" class="board_main" src="images/scrabble/blank.jpg">
+                      <img id="7" class="board_main" src="images/scrabble/blank.jpg">
+                  </table>
+                </div>
+                <!-- Current Word -->
+                <div id="word">----</div>
                 
+                <!-- Panel -->
+                <div id="panel"></div>
+                
+                <!-- message section -->
+                <div id="messages">Start!!</div><br>
+                
+                <!-- current score -->
+                <div style="float: left;"> Current score: </div>
+                <div id="score">0</div>
+                
+                <!-- submit buttons -->
+                <div id="button">
+                  <button onclick="AddTiles()" class="btn1">Add tiles</button>
+                  <button onClick="Next()" class="btn1">Next</button>
+                  <button onClick="NewGame()" class="btn2">New</button>
+                </div>
+                
+                <!-- total score -->
+                <div id="totalscore">Total score:0</div>
 
 			</article>
             
-                                    				<!-- call jsp -->
+            	<!-- call jsp -->
                 <script src="js/jquery-1.11.1.js"></script>
 				<script src="js/jquery.validate.js"></script>
                 <script src="js/ui/1.12.1/jquery-ui.js"></script>
@@ -98,6 +96,3 @@
 		</div>
 	</body>
 </html>
-=======
-.
->>>>>>> 61d6c48361830646c5cb1fc9811d9291188d3d2f
