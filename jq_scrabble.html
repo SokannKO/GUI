@@ -20,28 +20,8 @@
     	<meta charset="utf-8">
 		<title>K.O. webpage for GUI</title>
 		<link href="css/style.css" rel="stylesheet">
-        <style>
-		#board{
-			width:600px;
-		}
-		#rack{
-			width:600px;
-			margin-top: 25px;
-		}
+        <link href="css/scrabble.css" rel="stylesheet">
 
-		#text{
-			margin-top: 25px;
-		}
-		.board_blocks{
-		}
-		.rack_blocks{
-		}
-		#button{
-		}
-		.btn{
-			margin: 10px;
-		}
-		</style>
 	</head>
 	<body>
 
@@ -70,48 +50,46 @@
                 
                 <div id="board">
     <table>
-        <img id="0" class="board_blocks" src="images/scrabble/blank.jpg">
-        <img id="1" class="board_blocks" src="images/scrabble/blank.jpg">
-        <img id="2" class="board_blocks" src="images/scrabble/doubleletter.jpg">
-        <img id="3" class="board_blocks" src="images/scrabble/blank.jpg">
-        <img id="4" class="board_blocks" src="images/scrabble/blank.jpg">
-        <img id="5" class="board_blocks" src="images/scrabble/doubleword.jpg">
-        <img id="6" class="board_blocks" src="images/scrabble/blank.jpg">
-        <img id="7" class="board_blocks" src="images/scrabble/blank.jpg">
+        <img id="0" class="board_main" src="images/scrabble/blank.jpg">
+        <img id="1" class="board_main" src="images/scrabble/blank.jpg">
+        <img id="2" class="board_main" src="images/scrabble/doubleletter.jpg">
+        <img id="3" class="board_main" src="images/scrabble/blank.jpg">
+        <img id="4" class="board_main" src="images/scrabble/blank.jpg">
+        <img id="5" class="board_main" src="images/scrabble/doubleword.jpg">
+        <img id="6" class="board_main" src="images/scrabble/blank.jpg">
+        <img id="7" class="board_main" src="images/scrabble/blank.jpg">
     </table>
 
-
+<div id="word">----</div>
 </div>
-<div id="rack">
-
+<div id="panel">
 </div>
+<div id="messages">Start!!</div><br>
+<div id="score">Current score: 0</div>
 <div id="button">
-    <button onclick="continuePlaying()" class="btn">
-        continue with current word
+    <button onclick="AddTiles()" class="btn1">
+        Add tiles
     </button>
 
-    <button onClick="newTiles()" class="btn">
-        next round
+    <button onClick="NewTiles()" class="btn1">
+        Next
     </button>
 
-    <button onClick="newGame()" class="btn">
-        new game
+    <button onClick="NewGame()" class="btn2">
+        New
     </button>
 </div>
-<div id="text">
-    <div id="score">0</div>
-    <div id="word"></div>
-    <div id="messages"></div>
-    <div id="totalscore"></div>
-</div>
+<div id="totalscore">Total score: 0</div>
+
                 
-                				<!-- call jsp -->
-                
-				<script src="js/jquery-1.11.1.js"></script>
+
+			</article>
+            
+                                    				<!-- call jsp -->
+                <script src="js/jquery-1.11.1.js"></script>
 				<script src="js/jquery.validate.js"></script>
                 <script src="js/ui/1.12.1/jquery-ui.js"></script>
-                <script src="js/scrabble.js" type="text/javascript"></script>
-			</article>
+                <script src="js/scrabble.js"></script>
 
 			<!-- print footer -->
 			<footer>Copyright (c) 2016 by Seokhwan Ko. All rights reserved.</footer>

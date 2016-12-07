@@ -1,0 +1,27 @@
+#board{
+	width:600px;
+}
+#panel{
+	background-color: #033;
+	height: 200px;
+	width: 550px;
+	margin-top: 25px;
+	padding: 30px;
+}
+#text{
+	margin-top: 25px;
+}
+.board_main{
+}
+.panel_blocks{
+}
+#button{
+	margin-top: 50px;
+	text-align:right;
+	width:600px;
+}
+.btn1{
+}
+.btn2{
+	margin-left:400px;
+}

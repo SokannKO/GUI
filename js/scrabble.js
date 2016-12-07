@@ -1,22 +1,20 @@
 /*
- Full name :	Seokhwan Ko
- Email :		seokhwan_ko@student.uml.edu
- File :			https://sokannko.github.io/GUI/js/matrix_sl.js
-  
- Affiliation :	Department of Computer Science, University of Massachusetts Lowell
- Description :	Assignment #8; Using the jQuery UI Slider and Tab Widgets.
- 				This assignment introduces you to the jQuery User Interface (UI) library.
- 
- updated by Seokhwan Ko on November 22, 2016 at 09:57 PM
- 
- Copyright (c) 2016 by Seokhwan Ko. All rights reserved.
+ Tyler J. Bainbridge
+ tyler_bainbridge@student.uml.edu
+ 91.461 GUI Programming I
+ Assignment:  Scrabble using JQuery UI
+ December 4th, 2015
 
-*/
+ Tyler Bainbridge, UMass Lowell Computer Science, tbainbr@cs.uml.edu
+ Copyright (c) 2015 by Tyler J Bainbridge
+ updated by TJB on December 4th, 2015 at 7:45 PM
+ */
+
 var lettersOnDeck = 0;
 var images = "";
 var tcount = 0;
 var THISISTHETOTALSCORE = 0;
-var word = new Array(8); //the board where you put the tiles. this is for tracking the word
+var word = new Array(8); //the board where you put the tiles. this is for tpaneling the word
 var scores = [
     {"letter": "A", "value": 1, "amount": 9},
     {"letter": "B", "value": 3, "amount": 2},
@@ -49,34 +47,58 @@ var scores = [
 
 $(document).ready(function () {
     // printTable();
-    populateBoard(); //randomly populates the board with tiles
-    JQueryDragDrop(); //initializes the draggables and droppables
+    SetupBoard(); //randomly setup the board
+    DragnDrop(); //initializes the draggables and droppables
 
 });
 
-function newTiles()
+function NewTiles()
 {
-    if(document.getElementById('messages').innerHTML === "You have submitted a correct word! Congratulations.")
+    if(document.getElementById('messages').innerHTML === "Your word is correct!!")
     {
         THISISTHETOTALSCORE += parseInt(document.getElementById('score').innerHTML);
         document.getElementById('totalscore').innerHTML = "Total score: " + THISISTHETOTALSCORE;
         restart();
     }else{
-        alert("Please submit a valid word and try again");
+        alert("Please submit a valid word");
     }
 
 }
 
-function continuePlaying(){
-    if(document.getElementById('messages').innerHTML === "You have submitted a correct word! Congratulations.")
+function AddTiles(){
+    if(document.getElementById('messages').innerHTML === "Your word is correct!!")
     {
         THISISTHETOTALSCORE += parseInt(document.getElementById('score').innerHTML);
         document.getElementById('totalscore').innerHTML = "Total score: " + THISISTHETOTALSCORE;
-        populateBoard();
+        SetupBoard();
     }else{
-        alert("Please submit a valid word and try again");
+        alert("Please submit a valid word");
     }
 }
+
+/**
+ * setup the board with tiles
+ */
+function SetupBoard() {
+    var letter;
+    var random;
+    var lettersToAdd = 7 - lettersOnDeck;
+
+    lockWord();
+    //we want seven tiles so add seven
+    for (var i = 0; i < lettersToAdd; i++) {
+        random = Math.floor((Math.random() * 25));      //random number 1-25
+        letter = scores[random].letter;                 //letter = the letter at the random spot in the scores array
+        console.log(random);
+        $("#panel").append(" <img id=\"" + letter + "\" class=\"panel_blocks\" src=\"images/scrabble/Scrabble_Tile_" + letter + ".jpg\">") //dynamically create images in the #panel div
+        lettersOnDeck++;
+    }
+
+    console.log(images);
+
+    DragnDrop(); //refresh the draggable code
+}
+
 /**
  * *
  * @param word to convert into score using the array values in scores
@@ -111,16 +133,16 @@ function updateScore(word) {
         totalScore = totalScore * 2;
     }
     //put it in the score div
-    document.getElementById('score').innerHTML = totalScore.toString();
+    document.getElementById('score').innerHTML = "Current score: " + totalScore.toString();
 }
 
 /**
  * draggable and droppable stuff
  * @constructor
  */
-function JQueryDragDrop() {
-    //allow the tiles to be dropped back on the rack
-    $("#rack").droppable({accept: '.rack_blocks', out: Letters});
+function DragnDrop() {
+    //allow the tiles to be dropped back on the panel
+    $("#panel").droppable({accept: '.panel_blocks', out: Letters});
 
     /**
      * minuses leters from the deck
@@ -132,8 +154,8 @@ function JQueryDragDrop() {
         lettersOnDeck--;
     }
 
-    //rack blocks (the letters) are draggable and snap to board blocks in the inside, if it's not a valid droppable then revert
-    $(".rack_blocks").draggable({snap: ".board_blocks", snapMode: "inner", revert: 'invalid'});
+    //panel blocks (the letters) are draggable and snap to board blocks in the inside, if it's not a valid droppable then revert
+    $(".panel_blocks").draggable({snap: ".board_main", snapMode: "inner", revert: 'invalid'});
 
     //if they're being dragged , make that array slot blank
     function Drag(event, ui) {
@@ -145,8 +167,8 @@ function JQueryDragDrop() {
         updateWord(word);
     }
 
-    //you can drag the rack blocks onto the board(.board_blocks)
-    $(".board_blocks").droppable({accept: '.rack_blocks', drop: Drop, out: Drag});
+    //you can drag the panel blocks onto the board(.board_main)
+    $(".board_main").droppable({accept: '.panel_blocks', drop: Drop, out: Drag});
 
     //run this function when a tile is dropped
     function Drop(event, ui) {
@@ -164,39 +186,19 @@ function JQueryDragDrop() {
             word[number] = letter;
             updateWord(word);
         }
-
-
     }
 }
 
-function newGame()
+function NewGame()
 {
     restart();
-    document.getElementById('totalscore').innerHTML = "";
+	document.getElementById('word').innerHTML = "----";
+	document.getElementById('messages').innerHTML = "New game Start!!";
+	document.getElementById('score').innerHTML = "Current score: 0";
+    document.getElementById('totalscore').innerHTML = "Total score: 0";
 }
 
-/**
- * populates the board with tiles
- */
-function populateBoard() {
-    var letter;
-    var random;
-    var lettersToAdd = 7 - lettersOnDeck;
 
-    lockWord();
-    //we want seven tiles so add seven
-    for (var i = 0; i < lettersToAdd; i++) {
-        random = Math.floor((Math.random() * 25));      //random number 1-25
-        letter = scores[random].letter;                 //letter = the letter at the random spot in the scores array
-        console.log(random);
-        $("#rack").append(" <img id=\"" + letter + "\" class=\"rack_blocks\" src=\"images/scrabble/Scrabble_Tile_" + letter + ".jpg\">") //dynamically create images in the #rack div
-        lettersOnDeck++;
-    }
-
-    console.log(images);
-
-    JQueryDragDrop(); //refresh the draggable code
-}
 
 /**
  * locks the word down on the board so you cant move them
@@ -229,8 +231,8 @@ function updateWord(varDraggableId) {
         }
     }
     if (currentword) {
-        document.getElementById('word').innerHTML = currentword;
         updateScore(word);
+		document.getElementById('word').innerHTML = currentword;
     }
     submitWord();
 }
@@ -240,7 +242,7 @@ function updateWord(varDraggableId) {
  */
 function printTable() {
     var string = "";
-    var blank = "class=\"board_blocks\" src=\"images/scrabble/Scrabble_Tile_blank.jpg\">";
+    var blank = "class=\"board_main\" src=\"images/scrabble/blank.jpg\">";
     string = string + "<br>";
     string = string + "<table>"; //opening the table
     var tablecell = 0;
@@ -281,13 +283,13 @@ function restart()
         random = Math.floor((Math.random() * 25));      //random number 1-25
         letter = scores[random].letter;                 //letter = the letter at the random spot in the scores array
         console.log(random);
-        string = string + (" <img id=\""+ letter + "\" class=\"rack_blocks\" src=\"images/scrabble/Scrabble_Tile_" + letter + ".jpg\">"); //dynamically create images in the #rack div
+        string = string + (" <img id=\""+ letter + "\" class=\"panel_blocks\" src=\"images/scrabble/Scrabble_Tile_" + letter + ".jpg\">"); //dynamically create images in the #panel div
     }
 
     console.log(images);
 
-    document.getElementById('rack').innerHTML = string;
-    JQueryDragDrop(); //refresh the draggable code
+    document.getElementById('panel').innerHTML = string;
+    DragnDrop(); //refresh the draggable code
 
     document.getElementById('score').innerHTML = " ";
     document.getElementById('word').innerHTML = " ";
@@ -299,7 +301,7 @@ function restart()
 var dict = {};
 
 // Do a jQuery Ajax request for the text dictionary
-$.get( "dic/dictionary2.txt", function( txt ) {
+$.get( "dic/dictionary.txt", function( txt ) {
     // Get an array of all the words
     var words = txt.split( "\n" );
 
@@ -317,16 +319,17 @@ $.get( "dic/dictionary2.txt", function( txt ) {
 function submitWord(){
 
     findWord();
-    var submittedWord = document.getElementById('word').innerHTML;
+    var submittedWord = $("#word").text();
     console.log("submitted word: " + submittedWord);
     submittedWord = submittedWord.toLowerCase();
+	
     if ( dict[submittedWord] ) {
-        console.log("this is a real word: " + submittedWord);
-        document.getElementById('messages').innerHTML = 'You have submitted a correct word! Congratulations.';
+        console.log("This is in the dictionary: " + submittedWord);
+        document.getElementById('messages').innerHTML = 'Your word is correct!!';
 
     }else{
-        document.getElementById('messages').innerHTML = 'The word you have submitted [ '+ submittedWord +' ] is not a real word, sorry.';
-        console.log("this is a not a real word.");
+        document.getElementById('messages').innerHTML = 'No no.. Your word is not in the dictionary.';
+        console.log("This is not in the dictionary");
     }
 
 }
@@ -341,7 +344,6 @@ function findWord( word ) {
         // If it is, return that word
         return word;
     }
-
     // Otherwise, it isn't in the dictionary.
-    return "_____";
+    return "____";
 }
