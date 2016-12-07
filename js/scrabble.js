@@ -16,7 +16,7 @@
 var lettersOnDeck = 0;
 var images = "";
 var tcount = 0;
-var THISISTHETOTALSCORE = 0;
+var TOTALSCORE = 0;
 var word = new Array(8);
 var scores = [
     {"letter": "A", "value": 1, "amount": 9},
@@ -58,8 +58,8 @@ $(document).ready(function () {
 function AddTiles(){
     if(document.getElementById('messages').innerHTML === "Your word is correct!!")
     {
-        THISISTHETOTALSCORE += parseInt(document.getElementById('score').innerHTML);
-        document.getElementById('totalscore').innerHTML = "Total score:" + THISISTHETOTALSCORE;
+        TOTALSCORE += parseInt(document.getElementById('score').innerHTML);
+        document.getElementById('totalscore').innerHTML = "Total score:" + TOTALSCORE;
         SetupBoard();
     }else{
         alert("Please submit a valid word");
@@ -71,9 +71,12 @@ function Next()
 {
     if(document.getElementById('messages').innerHTML === "Your word is correct!!")
     {
-        THISISTHETOTALSCORE += parseInt(document.getElementById('score').innerHTML);
-        document.getElementById('totalscore').innerHTML = "Total score:" + THISISTHETOTALSCORE;
+        TOTALSCORE += parseInt(document.getElementById('score').innerHTML);
+        document.getElementById('totalscore').innerHTML = "Total score:" + TOTALSCORE;
         restart();
+		document.getElementById('word').innerHTML = "----";
+		document.getElementById('messages').innerHTML = "Next";
+		document.getElementById('score').innerHTML = "0";
     }else{
         alert("Please submit a valid word");
     }
